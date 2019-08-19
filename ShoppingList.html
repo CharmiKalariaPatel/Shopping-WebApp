@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+
+.main{
+	border: 1px solid blue;
+	box-shadow: 3px 3px blue;
+	width: 610px;
+	padding: 30px;
+	margin: 5px;
+}	
+
+h2{
+	color: blue;
+	font-size: 30px;
+	text-align: center;
+	margin-top: 2px;
+}
+.first_frame{
+	border: 1px solid blue;
+	box-shadow: 3px 3px blue;
+	width: 550px;
+	padding: 5px 0px 5px 5px;
+	color: blue;
+}
+.Last_frame{
+	border: 1px solid blue;
+	box-shadow: 3px 3px blue;
+	width: 550px;
+	padding: 5px 0px 5px 5px;
+	margin-top: 30px;
+}	
+#table{
+	border-collapse: collapse;
+	width: 550px;
+	color: blue;
+	font-family: Arial;
+	text-align: center;
+
+}
+th{
+	text-align: center;
+}
+
+</style>
+
+
+<script type="text/javascript">
+	
+	function AddProduct() {
+
+		
+
+		if(document.getElementById("Product").value=="" ){
+			alert('Sorry , You need to enter Product First');
+		}
+
+	 	else if(document.getElementById("Quantity").value==""){
+			alert('Sorry , You need to enter Quantity First');
+		}
+		else if(document.getElementById("Quantity").value <=0 ){
+			alert('Sorry , Quantity must be valid positive value');
+		}
+
+		else{
+
+		var Product=document.getElementById("Product").value;
+		var ProductNode=document.createTextNode(Product);
+
+		var Quantity=document.getElementById("Quantity").value;
+		var QuantityNode=document.createTextNode(Quantity);
+
+		var tdProduct=document.createElement("td");
+  		tdProduct.appendChild(ProductNode);
+
+  		var tdQuantity=document.createElement("td");
+  		tdQuantity.appendChild(QuantityNode);
+
+		var remove=document.createElement('button');
+  		var text=document.createTextNode("REMOVE");
+  		remove.appendChild(text);
+
+  		remove.setAttribute('onclick','removeitems(this)');
+
+
+  		var tr=document.createElement("tr");
+
+  		tr.appendChild(tdProduct);
+  		tr.appendChild(tdQuantity);
+  		tr.appendChild(remove);
+
+  		var table=document.getElementById('table');
+  		table.appendChild(tr);
+  		document.getElementById("Product").value='';
+  		document.getElementById("Quantity").value='';
+  	}
+
+}
+	function removeitems(r) {
+
+		var result=confirm("Are you sure want to delete :?")
+		if(result){
+			var i=r.parentNode.rowIndex;
+			 document.getElementById("table").deleteRow(i);
+
+		}
+			else{
+
+			}
+		
+		
+	}
+
+
+
+
+</script>
+
+</head>
+<body>
+
+<div class="main">
+
+	<h2>Shopping List</h2>
+		
+	
+		<div class="first_frame">
+			Product : <input type="text" id="Product" >
+			Quantity :<input type="text" id="Quantity" >
+			
+			<button type="button" class="btn btn-default btn-sm" onclick="AddProduct()">ADD</button>
+		
+		</div>
+
+		
+
+		<div class="Last_frame">
+			<table id="table">
+				<tr>
+				<th>Product name </th>
+				<th>Quantity</th>
+				<th>Operation</th>
+				</tr>
+				
+			</table>
+		</div>
+	
+
+
+</div>
+
+</body>
+</html>
